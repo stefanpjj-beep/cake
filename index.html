@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>作品集 | 单页</title>
+    <meta
+      name="description"
+      content="移动端优先、快速加载、简洁配色的单页作品集。"
+    />
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f5f7fb;
+        --ink: #0b0d12;
+        --muted: #5b6372;
+        --accent: #1d7cff;
+        --glass: rgba(255, 255, 255, 0.65);
+        --glass-strong: rgba(255, 255, 255, 0.8);
+        --shadow: 0 24px 60px rgba(15, 23, 42, 0.14);
+        --radius: 24px;
+        --max-width: 980px;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #06070b;
+          --ink: #eef2ff;
+          --muted: #b5bfd2;
+          --accent: #6ab8ff;
+          --glass: rgba(13, 18, 30, 0.7);
+          --glass-strong: rgba(18, 25, 40, 0.85);
+          --shadow: 0 24px 60px rgba(5, 8, 20, 0.6);
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI",
+          sans-serif;
+        background: radial-gradient(
+            circle at 10% 20%,
+            rgba(109, 180, 255, 0.35),
+            transparent 55%
+          ),
+          radial-gradient(
+            circle at 90% 10%,
+            rgba(208, 164, 255, 0.35),
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 70% 80%,
+            rgba(134, 239, 172, 0.35),
+            transparent 55%
+          ),
+          var(--bg);
+        color: var(--ink);
+        min-height: 100vh;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      .page {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 28px 18px 64px;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      header {
+        display: grid;
+        gap: 20px;
+      }
+
+      .hero {
+        padding: 28px;
+        background: linear-gradient(135deg, var(--glass), transparent 130%);
+        border-radius: var(--radius);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(18px) saturate(1.2);
+        box-shadow: var(--shadow);
+      }
+
+      .hero h1 {
+        font-size: clamp(1.9rem, 2.6vw + 1.2rem, 3rem);
+        margin: 0 0 12px;
+      }
+
+      .hero p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+
+      .nav {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      }
+
+      .nav a {
+        padding: 12px 16px;
+        border-radius: 14px;
+        background: var(--glass-strong);
+        border: 1px solid rgba(255, 255, 255, 0.45);
+        backdrop-filter: blur(14px);
+        font-size: 0.95rem;
+        color: var(--ink);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .nav a:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 32px rgba(15, 23, 42, 0.12);
+      }
+
+      main {
+        display: grid;
+        gap: 22px;
+      }
+
+      .project {
+        padding: 20px;
+        border-radius: 22px;
+        background: linear-gradient(145deg, var(--glass), transparent 120%);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        backdrop-filter: blur(18px) saturate(1.1);
+        box-shadow: var(--shadow);
+        display: grid;
+        gap: 16px;
+      }
+
+      .project h2 {
+        font-size: 1.25rem;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .project h2 a {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .project h2 a::after {
+        content: "↗";
+        color: var(--accent);
+        font-size: 0.95em;
+      }
+
+      .project p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      .tag-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .tag {
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        background: rgba(255, 255, 255, 0.55);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+      }
+
+      .cover {
+        border-radius: 18px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.45);
+      }
+
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      @media (min-width: 768px) {
+        .page {
+          padding: 48px 32px 88px;
+        }
+
+        .project {
+          grid-template-columns: 1.2fr 1fr;
+          align-items: center;
+        }
+
+        .project:nth-child(even) {
+          grid-template-columns: 1fr 1.2fr;
+        }
+
+        .project:nth-child(even) .content {
+          order: 2;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <section class="hero">
+          <h1>你好，我是你的名字</h1>
+          <p>
+            这里展示我的 6 个精选项目。移动端优先、加载快、配色简洁，灵感来自
+            iOS 26 的液态玻璃风格。
+          </p>
+        </section>
+        <nav class="nav" aria-label="项目导航">
+          <a href="#project-1">项目 01</a>
+          <a href="#project-2">项目 02</a>
+          <a href="#project-3">项目 03</a>
+          <a href="#project-4">项目 04</a>
+          <a href="#project-5">项目 05</a>
+          <a href="#project-6">项目 06</a>
+        </nav>
+      </header>
+
+      <main>
+        <article id="project-1" class="project">
+          <div class="content">
+            <h2>
+              <a href="#project-1" aria-label="跳转到项目 1">项目标题一</a>
+            </h2>
+            <p>
+              项目简介：一句话描述核心价值、你的角色以及交付结果。请替换为你的真实内容。
+            </p>
+            <div class="tag-row">
+              <span class="tag">品牌体验</span>
+              <span class="tag">响应式</span>
+              <span class="tag">iOS 风格</span>
+            </div>
+          </div>
+          <div class="cover">
+            <img
+              src="https://images.unsplash.com/flagged/photo-1551739440-5dd934d3a94a?auto=format&fit=crop&w=900&q=80"
+              alt="项目 1 预览图"
+              loading="lazy"
+              width="900"
+              height="600"
+            />
+          </div>
+        </article>
+
+        <article id="project-2" class="project">
+          <div class="content">
+            <h2>
+              <a href="#project-2" aria-label="跳转到项目 2">项目标题二</a>
+            </h2>
+            <p>
+              项目简介：突出关键指标与解决的问题，例如转化率提升或流程优化。
+            </p>
+            <div class="tag-row">
+              <span class="tag">数据可视化</span>
+              <span class="tag">敏捷迭代</span>
+              <span class="tag">轻量化</span>
+            </div>
+          </div>
+          <div class="cover">
+            <img
+              src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=900&q=80"
+              alt="项目 2 预览图"
+              loading="lazy"
+              width="900"
+              height="600"
+            />
+          </div>
+        </article>
+
+        <article id="project-3" class="project">
+          <div class="content">
+            <h2>
+              <a href="#project-3" aria-label="跳转到项目 3">项目标题三</a>
+            </h2>
+            <p>
+              项目简介：描述与用户体验相关的亮点，例如交互动效或用户反馈。
+            </p>
+            <div class="tag-row">
+              <span class="tag">增长</span>
+              <span class="tag">动画</span>
+              <span class="tag">可访问性</span>
+            </div>
+          </div>
+          <div class="cover">
+            <img
+              src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=900&q=80"
+              alt="项目 3 预览图"
+              loading="lazy"
+              width="900"
+              height="600"
+            />
+          </div>
+        </article>
+
+        <article id="project-4" class="project">
+          <div class="content">
+            <h2>
+              <a href="#project-4" aria-label="跳转到项目 4">项目标题四</a>
+            </h2>
+            <p>
+              项目简介：说明你的贡献范围，例如策略、设计系统或跨团队协作。
+            </p>
+            <div class="tag-row">
+              <span class="tag">设计系统</span>
+              <span class="tag">协作</span>
+              <span class="tag">品牌一致性</span>
+            </div>
+          </div>
+          <div class="cover">
+            <img
+              src="https://images.unsplash.com/photo-1473187983305-f615310e7daa?auto=format&fit=crop&w=900&q=80"
+              alt="项目 4 预览图"
+              loading="lazy"
+              width="900"
+              height="600"
+            />
+          </div>
+        </article>
+
+        <article id="project-5" class="project">
+          <div class="content">
+            <h2>
+              <a href="#project-5" aria-label="跳转到项目 5">项目标题五</a>
+            </h2>
+            <p>
+              项目简介：强调交付结果或业务影响，保持文字精炼。
+            </p>
+            <div class="tag-row">
+              <span class="tag">产品策略</span>
+              <span class="tag">用户研究</span>
+              <span class="tag">MVP</span>
+            </div>
+          </div>
+          <div class="cover">
+            <img
+              src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=80"
+              alt="项目 5 预览图"
+              loading="lazy"
+              width="900"
+              height="600"
+            />
+          </div>
+        </article>
+
+        <article id="project-6" class="project">
+          <div class="content">
+            <h2>
+              <a href="#project-6" aria-label="跳转到项目 6">项目标题六</a>
+            </h2>
+            <p>
+              项目简介：说明你希望突出的技术或方法，作为作品集的收尾。
+            </p>
+            <div class="tag-row">
+              <span class="tag">实验性</span>
+              <span class="tag">视觉</span>
+              <span class="tag">快速加载</span>
+            </div>
+          </div>
+          <div class="cover">
+            <img
+              src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80"
+              alt="项目 6 预览图"
+              loading="lazy"
+              width="900"
+              height="600"
+            />
+          </div>
+        </article>
+      </main>
+
+      <footer>
+        <p>替换为你的邮箱或社交链接 · © 2024</p>
+      </footer>
+    </div>
+  </body>
+</html>
